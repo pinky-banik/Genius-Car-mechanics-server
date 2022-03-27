@@ -26,6 +26,15 @@ async function run(){
         const database = client.db("genius-car-mechanics");
         const servicesCollection = database.collection("services");
 
+
+        //get api
+        app.get('/services',async(req,res)=>{
+            const cursor = servicesCollection.find({});
+            const services =await cursor.toArray();
+            res.send(services);
+        })
+
+
         //post api
         app.post('/services',async(req,res)=>{
             const service = req.body;
